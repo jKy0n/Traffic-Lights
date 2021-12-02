@@ -62,7 +62,7 @@
 //
 //				Initial Stetaments: 
 //
-        include   
+        #include   at89x52.h
 //
 //
 //
@@ -154,10 +154,10 @@
 //					Sketch notes:
 //
 //
-//      - Initial libraries for 8051
-//      - timer
-//      - Interrupt
-//      - Switch Case
+//      [ x ] - Initial libraries for 8051 
+//      [   ] - timer
+//      [   ] - Interrupt
+//      [   ] - Switch Case sub routine
 //
 //
 //
