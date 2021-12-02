@@ -279,10 +279,10 @@ PEDESTRE7:	MOV	P0,	#2CH			; Verde via 0, vermelho via 2
 
 
 		TEMPO:	MOV	R0,	#016D
-		VOLTA2:	MOV	R1,	#250D		; A idéia � ficar decrementando R0, R1 e R2
-		VOLTA1:	MOV	R2,	#250D		; repetidas vezes at� chegar a 0 (zero)
+		VOLTA2:	MOV	R1,	#250D		; A idéia é ficar decrementando R0, R1 e R2
+		VOLTA1:	MOV	R2,	#250D		; repetidas vezes até chegar a 0 (zero)
 									; 250 x 250 x 16 x 2  =  2.000.000 uS  =  2 S
-			DJNZ	R2,	$			; Ao final dessa rotina ter� se passado 2 segundo.
+			DJNZ	R2,	$			; Ao final dessa rotina terá se passado 2 segundo.
 			DJNZ	R1,	VOLTA1
 			DJNZ	R0,	VOLTA2
 		RET
@@ -292,10 +292,10 @@ PEDESTRE7:	MOV	P0,	#2CH			; Verde via 0, vermelho via 2
 
 
 		TEMPOP:	MOV	R0,	#004D
-		VOLTA4:	MOV	R1,	#250D		; A idéia � ficar decrementando R0, R1 e R2
-		VOLTA3:	MOV	R2,	#250D		; repetidas vezes at� chegar a 0 (zero)
+		VOLTA4:	MOV	R1,	#250D		; A idéia é ficar decrementando R0, R1 e R2
+		VOLTA3:	MOV	R2,	#250D		; repetidas vezes até chegar a 0 (zero)
 									; 250 x 250 x 4 x 2  =  500.000 uS  =  0,5 S
-			DJNZ	R2,	$			; Ao final dessa rotina ter� se passado 2 segundo.
+			DJNZ	R2,	$			; Ao final dessa rotina terá se passado 2 segundo.
 			DJNZ	R1,	VOLTA3
 			DJNZ	R0,	VOLTA4
 		RET
