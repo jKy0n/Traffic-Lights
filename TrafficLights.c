@@ -81,7 +81,7 @@
 	void timer0_isr()
 	{
 
-        ++phases
+        ++phases ;
 
 	}
 //
@@ -93,7 +93,19 @@
 	void button_isr()
 	{
 
+        pedestrian.walk() ;
 
+	}
+//
+//
+//  ----------------------------------------------------------------------------------------------------
+//
+//				Pedestrian Walk sub-routine:
+//
+	void pedestrian.walk()
+	{
+
+        
 
 	}
 //
