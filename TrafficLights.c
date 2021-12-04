@@ -121,7 +121,7 @@
 	void setup()
 	{
 
-        int phases = 0x00 ;
+    //    int phases = 0x00 ;
 
         P0 = 0x00 ;
         P1 = 0xFF ;
