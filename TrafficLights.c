@@ -46,14 +46,13 @@
 //				This code use:
 //
 //				-		   Kit:		
-//				-			µC:		Atmel - AT89S52
+//				-			µC:		8051 (Atmel - AT89S52)
 //				-		 Clock:		1MHz (Xtal: 16MHz)
 //				-		Editor:		VScode
 //				-		Syntax:		C Language
-//				-    Libraries:		
-//				-	Compilator:		
-//				-	 Simulator:		Proteus 8.4
-//				- 	Gravador??: 	Arduino
+//				-    Libraries:		AT89x52.h (SDCC - GNU)
+//				-	Compilator:		>> Not used yet <<
+//				-	 Simulator:		SimulIDE
 //
 //
 //
@@ -62,9 +61,14 @@
 //
 //				Initial Stetaments: 
 //
-        #include   at89x52.h
+        #include "AT89x52.h" ;
 //
 //
+        short phases = 0x00 ;
+//
+//
+        void setup(void) ;
+        void pedestrianWalk(void) ;
 //
 //  ----------------------------------------------------------------------------------------------------
 //
@@ -93,7 +97,7 @@
 	void button_isr()
 	{
 
-        pedestrian.walk() ;
+        pedestrianWalk() ;
 
 	}
 //
@@ -102,7 +106,7 @@
 //
 //				Pedestrian Walk sub-routine:
 //
-	void pedestrian.walk()
+	void pedestrianWalk()
 	{
 
         
@@ -119,8 +123,8 @@
 
         int phases = 0x00 ;
 
-        P0 = 0x00h ;
-        P1 = 0xFFh ;
+        P0 = 0x00 ;
+        P1 = 0xFF ;
 
 	}
 //
@@ -133,20 +137,20 @@
 	{
 		setup();
 
-        while ( true )
+        while ( 1 )
         {
             switch ( phases )
             {
-            case phases = 1 :
-                /* code */
+            case 1 :
+                /* code */          //
                 break;
             
-            case phases = 2 :
-                /* code */
+            case 2 :
+                /* code */          //
                 break;
             
-            case phases = n :
-                /* code */
+            case n :
+                /* code */          //
                 break;
             
             /*  default:
