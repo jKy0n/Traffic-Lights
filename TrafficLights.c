@@ -64,7 +64,7 @@
         #include "AT89x52.h" ;
 //
 //
-        short phases = 0x00 ;
+        unsigned short phases = 0x00 ;
 //
 //
         void setup(void) ;
@@ -123,8 +123,20 @@
 
     //    int phases = 0x00 ;
 
-        P0 = 0x00 ;
-        P1 = 0xFF ;
+        P0 = 0x00 ;					// Start with all lights off
+        P1 = 0xFF ;					// Uses Buttons as pull-up mode
+
+        IE = 0x87 ;					// Enable Timer0 and Interrupt0
+
+        PT0 = 1 ;					// Priorise Timer0 above others
+
+        TMOD = 0x22	;				// Define Timer0 as 16bits without auto-charge
+
+        TH0 = 0x00 ;				// 
+        TL0 = 0x00 ;				// Set Timer0 to 0 seconds
+
+        TF = 0 ;					// Clear Timer0 overflow flag
+        TR = 1 ;					// Start Timer0
 
 	}
 //
