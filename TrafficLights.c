@@ -50,7 +50,7 @@
 //				-		 Clock:		1MHz (Xtal: 16MHz)
 //				-		Editor:		VScode
 //				-		Syntax:		C Language
-//				-    Libraries:		AT89x52.h (SDCC - GNU)
+//				-    Libraries:		at89x52.h (SDCC - GNU)
 //				-	Compilator:		>> Not used yet <<
 //				-	 Simulator:		SimulIDE
 //
@@ -65,6 +65,7 @@
 //
 //
         unsigned short phases = 0x00 ;
+		unsigned int timerCounter = 0x00 ;
 //
 //
         void setup(void) ;
@@ -82,10 +83,28 @@
 //
 //				timer0 subroutine:
 //
-	void timer0_isr()
+	void timer0_isr(void)
 	{
+		TF0 = 0 ;
+		TR0 = 1 ;
 
-        ++phases ;
+		timerCounter = ++timerCounter ;
+
+		if (timerCounter >= 0x00)
+        {
+			if (phases > 5)
+			{
+				phases = 0x00 ;
+			}
+			else
+			{
+				++phases ;
+			}
+
+			// I will need check phases and restart it
+
+			timerCounter = 0x00 ;
+		}
 
 	}
 //
@@ -94,10 +113,10 @@
 //
 //				button interrupt sub-routine:
 //
-	void button_isr()
+	void button_isr(void)
 	{
 
-        pedestrianWalk() ;
+        pedestrianWalk(void) ;
 
 	}
 //
@@ -106,7 +125,7 @@
 //
 //				Pedestrian Walk sub-routine:
 //
-	void pedestrianWalk()
+	void pedestrianWalk(void)
 	{
 
         
@@ -118,25 +137,25 @@
 //
 //				Initial Setup:
 //
-	void setup()
+	void setup(void)
 	{
 
     //    int phases = 0x00 ;
 
-        P0 = 0x00 ;					// Start with all lights off
-        P1 = 0xFF ;					// Uses Buttons as pull-up mode
+        P0 = 0x00 ;						// Start with all lights off
+        P1 = 0xFF ;						// Uses Buttons as pull-up mode
 
-        IE = 0x87 ;					// Enable Timer0 and Interrupt0
+        IE = 0x87 ;						// Enable Timer0 and Interrupt0
 
-        PT0 = 1 ;					// Priorise Timer0 above others
+        PT0 = 1 ;						// Priorise Timer0 above others
 
-        TMOD = 0x22	;				// Define Timer0 as 16bits without auto-charge
+        TMOD = 0x22	;					// Define Timer0 as 16bits without auto-charge
 
-        TH0 = 0x00 ;				// 
-        TL0 = 0x00 ;				// Set Timer0 to 0 seconds
+        TH0 = 0x00 ;					// 
+        TL0 = 0x00 ;					// Set Timer0 to 0 seconds
 
-        TF = 0 ;					// Clear Timer0 overflow flag
-        TR = 1 ;					// Start Timer0
+        TF = 0 ;						// Clear Timer0 overflow flag
+        TR = 1 ;						// Start Timer0
 
 	}
 //
@@ -145,26 +164,29 @@
 //
 //				Main Routine:
 //
-	void main()
+	void main(void)
 	{
-		setup();
+		setup(void);
 
         while ( 1 )
         {
             switch ( phases )
             {
             case 1 :
-                /* code */          //
+                /* code */          	// red
                 break;
             
             case 2 :
-                /* code */          //
+                /* code */          	// yellow
                 break;
             
-            case n :
-                /* code */          //
+            case 4 :
+                /* code */				// green
                 break;
             
+			case 5 :					// yellow (and return do 1)
+
+				break;
             /*  default:
                 break;   */
             }            
@@ -178,13 +200,12 @@
 // 										Code ends!  =)
 //  ----------------------------------------------------------------------------------------------------
 //
-//
 //					Sketch notes:
 //
 //
 //      [ x ] - Initial libraries for 8051 
-//      [   ] - timer
-//      [   ] - Interrupt
+//      [ x ] - timer
+//      [ ? ] - Interrupt
 //      [   ] - Switch Case sub routine
 //
 //
