@@ -83,7 +83,7 @@
 //
 //				timer0 subroutine:
 //
-	void timer0_isr(void)
+	void timer0_isr(void) __interrupt (1) __using (1)
 	{
 		TF0 = 0 ;
 		TR0 = 1 ;
@@ -113,7 +113,7 @@
 //
 //				button interrupt sub-routine:
 //
-	void button_isr(void)
+	void button_isr(void) __interrupt (0) __using (1)
 	{
 
         pedestrianWalk(void) ;
